@@ -3,6 +3,11 @@ import {withRouter, Link} from 'react-router-dom'
 import './index.css'
 
 const Header = props => {
+  /**
+   * Handles the logout process when the logout button is clicked.
+   * @param {Object} props - The component props containing the history object.
+   * @returns {void} This function doesn't return a value.
+   */
   const onClickLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
