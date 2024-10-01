@@ -29,11 +29,21 @@ class JobItemDetails extends Component {
     this.getJobItem()
   }
 
+  /**
+   * Formats skill data into a standardized object structure.
+   * @param {Object} data - The raw skill data object.
+   * @returns {Object} An object containing formatted skill data with specific properties.
+   */
   getFormattedSkillData = data => ({
     companyLogoUrl: data.company_logo_url,
     employmentType: data.employment_type,
     jobDescription: data.job_description,
     id: data.id,
+    /**
+     * Formats the input data object into a standardized structure.
+     * @param {Object} data - The raw data object to be formatted.
+     * @returns {Object} A formatted object with renamed and restructured properties.
+     */
     rating: data.rating,
     location: data.location,
     title: data.title,
@@ -53,7 +63,17 @@ class JobItemDetails extends Component {
     rating: data.rating,
     title: data.title,
     packagePerAnnum: data.package_per_annum,
+    /**
+     * Maps an array of skill objects to a new array with selected properties
+     * @param {Array} data.skills - An array of skill objects containing image_url and name properties
+     * @returns {Array} An array of objects with imageUrl and name properties
+     */
     skills: data.skills.map(eachSkill => ({
+      /**
+       * Fetches job item details from an API and updates the component state
+       * @param {void} - This method doesn't take any parameters
+       * @returns {Promise<void>} Doesn't return a value, but updates the component state
+       */
       imageUrl: eachSkill.image_url,
       name: eachSkill.name,
     })),
@@ -79,6 +99,13 @@ class JobItemDetails extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const updatedData = this.getFormattedData(data.job_details)
+      ```
+      /**
+       * Maps and formats skill data for similar jobs
+       * @param {Array} data - An object containing similar jobs data
+       * @returns {Array} An array of formatted skill data for each similar job
+       */
+      ```
       const updatedSkillData = data.similar_jobs.map(eachSimilarJob =>
         this.getFormattedSkillData(eachSimilarJob),
       )
@@ -89,6 +116,10 @@ class JobItemDetails extends Component {
         similarJobItemList: updatedSkillData,
         apiStatus: apiStatusConstants.success,
       })
+    /**
+     * Renders the details of a job item including company information, job description, skills required, life at the company, and similar job listings.
+     * @returns {JSX.Element} A JSX element containing the full job item details, including company logo, job title, location, salary, description, required skills, company life information, and similar job listings.
+     */
     } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
@@ -146,6 +177,11 @@ class JobItemDetails extends Component {
           <div className="description-container">
             <h1 className="desc-heading">Description</h1>
             <a className="visit-link" href={companyWebsiteUrl}>
+              /**
+               * Renders a list of skill cards based on the provided skills array
+               * @param {Array} skills - An array of skill objects to be mapped
+               * @returns {Array} An array of SkillsCard components, each representing a skill
+               */
               Visit
               <BiLinkExternal className="bi-link" />
             </a>
@@ -169,6 +205,11 @@ class JobItemDetails extends Component {
         </div>
         <h1 className="similar-job-heading">Similar Jobs</h1>
         <ul className="similar-cards">
+          /**
+           * Renders a list of similar job items using the SimilarJobItem component
+           * @param {Array} similarJobItemList - An array of similar job objects
+           * @returns {Array} An array of SimilarJobItem components, each representing a similar job
+           */
           {similarJobItemList.map(eachItem => (
             <SimilarJobItem key={eachItem.id} jobDetails={eachItem} />
           ))}
@@ -177,6 +218,10 @@ class JobItemDetails extends Component {
     )
   }
 
+  /**
+   * Renders a failure view component with an image, error message, and retry button
+   * @returns {JSX.Element} A JSX element representing the failure view
+   */
   renderFailureView = () => (
     <div className="render-loading-view">
       <img
@@ -195,6 +240,12 @@ class JobItemDetails extends Component {
         onClick={this.getJobItem}
       >
         Retry
+      ```
+      /**
+       * Renders a loading view with a three-dot animation.
+       * @returns {JSX.Element} A div containing a loader component with specified properties.
+       */
+      ```
       </button>
     </div>
   )
@@ -205,6 +256,10 @@ class JobItemDetails extends Component {
     </div>
   )
 
+  /**
+   * Renders job views based on the current API status
+   * @returns {React.ReactNode} The appropriate view component based on the API status
+   */
   renderJobViews = () => {
     const {apiStatus} = this.state
 
