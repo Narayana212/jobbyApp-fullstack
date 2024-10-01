@@ -64,6 +64,11 @@ class JobProfileSection extends Component {
     this.getJobDetails();
   }
 
+  /**
+   * Asynchronously fetches job details from an API and updates the component state.
+   * @param {void} - This method doesn't take any parameters.
+   * @returns {Promise<void>} Doesn't return a value, but updates the component state with job details or error status.
+   */
   getJobDetails = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -94,6 +99,21 @@ class JobProfileSection extends Component {
     }
   };
 
+  /**
+   * Updates the search input state based on the user's input.
+   * @param {Object} event - The event object from the input change.
+   * @returns {void} This method doesn't return a value.
+   /**
+    * Handles the keydown event for the component.
+    * @param {React.KeyboardEvent} event - The keyboard event object.
+    * @returns {void} This method doesn't return anything.
+    */
+   */
+  /**
+   * Updates the salary range state and triggers a job details refresh.
+   * @param {number|Array} salary - The new salary range value(s) to set.
+   * @returns {void} This method doesn't return a value.
+   */
   changeSearchInput = event => {
     this.setState({ searchInput: event.target.value });
   };
@@ -108,13 +128,28 @@ class JobProfileSection extends Component {
     this.setState({ salaryRange: salary }, this.getJobDetails);
   };
 
+  /**
+   * Updates the employment type and triggers a job details update.
+   * @param {string} type - The employment type to be added.
+   * @returns {void} This method doesn't return a value, but updates the state and calls getJobDetails.
+   */
   changeEmploymentType = type => {
     this.setState(
+      /**
+       * Updates the employment type state by adding a new type to the existing array
+       * @param {function} prevState - A function that returns the previous state object
+       * @param {string} type - The new employment type to be added
+       * @returns {object} An object with the updated employmentType array
+       */
       prevState => ({ employmentType: [...prevState.employmentType, type] }),
       this.getJobDetails
     );
   };
 
+  /**
+   * Renders the job details section of the application
+   * @returns {JSX.Element} The rendered job details section, either displaying a list of jobs or a "No Jobs Found" message
+   */
   renderJobDetails = () => {
     const { jobsList, searchInput } = this.state;
     const jobsDisplay = jobsList.length > 0;
@@ -140,6 +175,13 @@ class JobProfileSection extends Component {
           </button>
         </div>
         <ul className="job-details-item-container">
+          ```
+          /**
+           * Renders a list of job cards using the JobCard component
+           * @param {Array} jobsList - An array of job objects to be rendered
+           * @returns {Array} An array of JobCard components, each representing a job
+           */
+          ```
           {jobsList.map(eachData => (
             <JobCard key={eachData.id} jobDetails={eachData} />
           ))}
@@ -178,6 +220,10 @@ class JobProfileSection extends Component {
     );
   };
 
+  /**
+   * Renders the failure view component for when something goes wrong
+   * @returns {JSX.Element} A div containing an image, heading, description, and a retry button
+   */
   renderFailureView = () => (
     <div className="failure-container">
       <img
@@ -200,6 +246,14 @@ class JobProfileSection extends Component {
     </div>
   );
 
+  /**
+   * Renders a loading view with a three-dot animation
+   /**
+    * Renders the job profile details list based on the current API status
+    * @returns {JSX.Element|null} The appropriate JSX element based on the API status, or null if status is unknown
+    */
+   * @returns {JSX.Element} A div containing a Loader component with ThreeDots animation
+   */
   renderLoadingView = () => (
     <div className="profile-loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
