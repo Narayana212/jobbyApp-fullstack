@@ -3,6 +3,18 @@ import {BsBriefcaseFill} from 'react-icons/bs'
 import {GoLocation} from 'react-icons/go'
 import './index.css'
 
+/**
+ * Renders a similar job item component
+ * @param {Object} props - The component props
+ * @param {Object} props.jobDetails - The details of the similar job
+ * @param {string} props.jobDetails.companyLogoUrl - URL of the company logo
+ * @param {string} props.jobDetails.employmentType - Type of employment
+ * @param {string} props.jobDetails.jobDescription - Description of the job
+ * @param {string} props.jobDetails.location - Location of the job
+ * @param {string} props.jobDetails.title - Title of the job
+ * @param {number} props.jobDetails.rating - Rating of the job
+ * @returns {JSX.Element} A list item containing details of a similar job
+ */
 const SimilarJobItem = props => {
   const {jobDetails} = props
   const {
