@@ -1,5 +1,9 @@
 import './index.css'
 
+/**
+ * Renders a Not Found page component
+ * @returns {JSX.Element} A div containing an image, heading, and description for a 404 page
+ */
 const NotFound = () => (
   <div className="not-found-container">
     <img
