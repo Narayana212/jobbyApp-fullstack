@@ -4,6 +4,12 @@ import Header from '../Header'
 
 import './index.css'
 
+```
+/**
+ * Renders the Home component of the application
+ * @returns {JSX.Element} The JSX for the Home page, including a header, main content, and a button to find jobs
+ */
+```
 const Home = () => {
   const jwtToken = Cookies.get('jwt_token')
   if (jwtToken === undefined) {

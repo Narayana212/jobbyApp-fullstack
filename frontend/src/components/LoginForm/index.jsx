@@ -12,6 +12,11 @@ class LoginForm extends Component {
     errorMsg: '',
   }
 
+  /**
+   * Handles successful submission by setting a JWT token cookie and redirecting to the home page.
+   * @param {string} jwtToken - The JSON Web Token received upon successful submission.
+   * @returns {void} This method doesn't return a value.
+   */
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
     Cookies.set('jwt_token', jwtToken, {
@@ -21,11 +26,22 @@ class LoginForm extends Component {
     history.replace('/')
   }
 
+  ```
+  /**
+   * Handles the failure case when submitting a form
+   * @param {string} errorMsg - The error message to be displayed
+   * @returns {void} This method doesn't return a value
+   */
+  ```
   onSubmitFailure = errorMsg => {
     this.setState({showSubmitError: true, errorMsg})
   }
 
-  onSubmitForm = async event => {
+  /**
+   * Handles form submission for user login
+   * @param {Event} event - The form submission event
+   * @returns {Promise<void>} Nothing
+   */  onSubmitForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
@@ -43,14 +59,30 @@ class LoginForm extends Component {
     }
   }
 
+  /**
+   * Updates the username state when the user enters input in the username field.
+   * @param {Object} event - The event object from the input change.
+   * @returns {void} This method doesn't return a value.
+   */
   onEnterUsername = event => {
     this.setState({username: event.target.value})
   }
 
+  ```
+  /**
+   * Updates the password state when the password input changes.
+   * @param {Object} event - The event object from the input change.
+   * @returns {void} This method doesn't return a value.
+   */
+  ```
   onChangePassword = event => {
     this.setState({password: event.target.value})
   }
 
+  /**
+   * Renders the username input field with label
+   * @returns {JSX.Element} A fragment containing a label and an input element for the username
+   */
   renderUsername = () => {
     const {username} = this.state
 
@@ -71,6 +103,10 @@ class LoginForm extends Component {
     )
   }
 
+  /**
+   * Renders the password input field with a label
+   * @returns {JSX.Element} A React fragment containing a label and password input element
+   */
   renderPassword = () => {
     const {password} = this.state
 

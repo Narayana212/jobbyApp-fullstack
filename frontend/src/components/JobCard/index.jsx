@@ -3,6 +3,20 @@ import {Link} from 'react-router-dom'
 import {HiLocationMarker, HiMail} from 'react-icons/hi'
 import './index.css'
 
+/**
+ * Renders a job card component with details of a job posting.
+ * @param {Object} props - The props object containing job details.
+ * @param {Object} props.jobDetails - An object containing specific job information.
+ * @param {string} props.jobDetails.title - The job title.
+ * @param {string} props.jobDetails.companyLogoUrl - URL of the company logo.
+ * @param {number} props.jobDetails.rating - The job or company rating.
+ * @param {string} props.jobDetails.employmentType - The type of employment (e.g., full-time, part-time).
+ * @param {string} props.jobDetails.location - The job location.
+ * @param {string} props.jobDetails.id - Unique identifier for the job.
+ * @param {string} props.jobDetails.packagePerAnnum - The annual package or salary information.
+ * @param {string} props.jobDetails.jobDescription - Detailed description of the job.
+ * @returns {JSX.Element} A Link component containing the job card information.
+ */
 const JobCard = props => {
   const {jobDetails} = props
   const {
