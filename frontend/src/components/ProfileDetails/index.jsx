@@ -20,6 +20,10 @@ class ProfileDetails extends Component {
     this.getProfileDetails()
   }
 
+  /**
+   * Fetches profile details from an API and updates the component state
+   * @returns {Promise<void>} A promise that resolves when the profile details are fetched and state is updated
+   */
   getProfileDetails = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -48,6 +52,10 @@ class ProfileDetails extends Component {
     }
   }
 
+  /**
+   * Renders the profile details component
+   * @returns {JSX.Element} A div containing the profile image, name, and short bio
+   */
   renderProfileDetails = () => {
     const {profileList} = this.state
     const {name, profileImageUrl, shortBio} = profileList
@@ -57,8 +65,16 @@ class ProfileDetails extends Component {
         <img src={profileImageUrl} alt="profile" className="profile-logo" />
         <h1 className="name-heading">{name}</h1>
         <p className="bio">{shortBio}</p>
+      /**
+       * Renders a loading view component.
+       * @returns {JSX.Element} A div containing a ThreeDots loader component.
+       */
       </div>
     )
+  /**
+   * Renders the failure view component with a retry button
+   * @returns {JSX.Element} A div containing a button to retry fetching profile details
+   */
   }
 
   renderLoadingView = () => (
